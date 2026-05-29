@@ -3,7 +3,7 @@ from db.crud import get_all_users, get_user_by_id, add_to_user
 
 user_blueprint = Blueprint('user_blueprint', __name__, url_prefix='/users')
 
-@user_blueprint.route('/', methods=['GET'])
+@user_blueprint.route('', methods=['GET'])  
 def get_users():
     users = get_all_users()
     return jsonify([{"id": u.id, "name": u.name, "email": u.email} for u in users])
@@ -15,7 +15,7 @@ def get_user(user_id):
         return jsonify({"error": "User not found"}), 404
     return jsonify({"id": user.id, "name": user.name, "email": user.email})
 
-@user_blueprint.route('/', methods=['POST'])
+@user_blueprint.route('', methods=['POST']) 
 def create_user():
     data = request.get_json()
     name = data.get('name')
