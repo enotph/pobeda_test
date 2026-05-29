@@ -6,7 +6,7 @@ from models import Base
 
 load_dotenv()
 
-# Путь к файлу базы данных SQLite
+# Путь к фвйлу базы данных SQLite
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///pobeda.db")
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})  # Для SQLite
@@ -17,7 +17,7 @@ def create_tables():
     Base.metadata.create_all(bind=engine)
 
 def drop_tables():
-    """Удаляет таблицы в БД"""
+    """Удвляет таблицы в БД"""
     Base.metadata.drop_all(bind=engine)
 
 def get_session():
