@@ -3,24 +3,21 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base
+from config import Config
 
 load_dotenv()
 
-# Путь к фвйлу базы данных SQLite
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///pobeda.db")
+DATABASE_URL = Config.SQLALCHEMY_DATABASE_URI
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})  # Для SQLite
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def create_tables():
-    """Создает таблицы в БД"""
     Base.metadata.create_all(bind=engine)
 
 def drop_tables():
-    """Удвляет таблицы в БД"""
     Base.metadata.drop_all(bind=engine)
 
 def get_session():
-    """Создание сессии"""
     db = SessionLocal()
     return db
