@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (res.ok) {
-      alert('Добавлен!');
+      alert('Добавлен.');
       document.getElementById('add-form').reset();
       bootstrap.Modal.getInstance(document.getElementById('addModal')).hide();
       loadUsers();
